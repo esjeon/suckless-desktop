@@ -61,6 +61,11 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
+/* volume commands */
+static const char *volup  [] = { "amixer", "-q", "set", "Master", "3+",     NULL };
+static const char *voldown[] = { "amixer", "-q", "set", "Master", "3-",     NULL };
+static const char *volmute[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -96,6 +101,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	/* volume keys */
+	{ MODKEY,                       XK_F1,     spawn,          {.v = volmute} },
+	{ MODKEY,                       XK_F2,     spawn,          {.v = voldown} },
+	{ MODKEY,                       XK_F3,     spawn,          {.v = volup  } },
 };
 
 /* button definitions */
