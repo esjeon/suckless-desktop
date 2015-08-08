@@ -172,7 +172,7 @@ drw_font_free(Fnt *font) {
 }
 
 Clr *
-drw_clr_create(Drw *drw, const char *clrname) {
+drw_clr_create(Drw *drw, const char *clrname, int alpha) {
 	Clr *clr;
 	Colormap cmap;
 	Visual *vis;
@@ -186,7 +186,7 @@ drw_clr_create(Drw *drw, const char *clrname) {
 	vis = DefaultVisual(drw->dpy, drw->screen);
 	if(!XftColorAllocName(drw->dpy, vis, cmap, clrname, &clr->rgb))
 		die("error, cannot allocate color '%s'\n", clrname);
-	clr->pix = clr->rgb.pixel;
+	clr->pix = clr->rgb.pixel | (alpha << 24);
 	return clr;
 }
 

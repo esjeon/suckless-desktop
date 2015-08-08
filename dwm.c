@@ -1707,12 +1707,12 @@ setup(void) {
 	cursor[CurResize] = drw_cur_create(drw, XC_sizing);
 	cursor[CurMove] = drw_cur_create(drw, XC_fleur);
 	/* init appearance */
-	scheme[SchemeNorm].border = drw_clr_create(drw, normbordercolor);
-	scheme[SchemeNorm].bg = drw_clr_create(drw, normbgcolor);
-	scheme[SchemeNorm].fg = drw_clr_create(drw, normfgcolor);
-	scheme[SchemeSel].border = drw_clr_create(drw, selbordercolor);
-	scheme[SchemeSel].bg = drw_clr_create(drw, selbgcolor);
-	scheme[SchemeSel].fg = drw_clr_create(drw, selfgcolor);
+	scheme[SchemeNorm].border = drw_clr_create(drw, normbordercolor, brdalpha);
+	scheme[SchemeNorm].bg = drw_clr_create(drw, normbgcolor, brdalpha);
+	scheme[SchemeNorm].fg = drw_clr_create(drw, normfgcolor, brdalpha);
+	scheme[SchemeSel].border = drw_clr_create(drw, selbordercolor, brdalpha);
+	scheme[SchemeSel].bg = drw_clr_create(drw, selbgcolor, brdalpha);
+	scheme[SchemeSel].fg = drw_clr_create(drw, selfgcolor, brdalpha);
 	/* init system tray */
 	updatesystray();
 	/* init bars */
