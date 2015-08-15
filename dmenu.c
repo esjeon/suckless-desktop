@@ -93,6 +93,8 @@ main(int argc, char *argv[]) {
 			fstrncmp = strncasecmp;
 			fstrstr = cistrstr;
 		}
+		else if(!strcmp(argv[i], "-a"))   /* arbitrary mode */
+			arbitrary = True;
 		else if(i+1 == argc)
 			usage();
 		/* these options take one argument */
@@ -426,7 +428,7 @@ keypress(XKeyEvent *ev) {
 		break;
 	case XK_Return:
 	case XK_KP_Enter:
-		puts((sel && !(ev->state & ShiftMask)) ? sel->text : text);
+		puts((sel && !(ev->state & ShiftMask) && !arbitrary) ? sel->text : text);
 		if(!(ev->state & ControlMask)) {
 			cleanup();
 			exit(0);
