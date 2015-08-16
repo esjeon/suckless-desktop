@@ -947,6 +947,10 @@ newclient(void) {
 	g_object_set(G_OBJECT(settings), "resizable-text-areas",
 			1, NULL);
 
+	//webkit_settings_set_enable_webgl(settings, TRUE);
+	g_object_set(G_OBJECT(settings), "enable-webgl",
+			1, NULL);
+
 	/*
 	 * While stupid, CSS specifies that a pixel represents 1/96 of an inch.
 	 * This ensures websites are not unusably small with a high DPI screen.
