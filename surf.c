@@ -946,8 +946,6 @@ newclient(void) {
 			defaultfontsize, NULL);
 	g_object_set(G_OBJECT(settings), "resizable-text-areas",
 			1, NULL);
-
-	//webkit_settings_set_enable_webgl(settings, TRUE);
 	g_object_set(G_OBJECT(settings), "enable-webgl",
 			1, NULL);
 
