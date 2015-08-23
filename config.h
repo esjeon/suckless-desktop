@@ -66,9 +66,9 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", normbgcolo
 static const char *termcmd[]  = { "st", NULL };
 
 /* volume commands */
-static const char *volup  [] = { "amixer", "-q", "set", "Master", "3+",     NULL };
-static const char *voldown[] = { "amixer", "-q", "set", "Master", "3-",     NULL };
-static const char *volmute[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
+static const char *volup  [] = { "amixer", "-q", "-D", "pulse", "sset", "Master", "4%+", NULL };
+static const char *voldown[] = { "amixer", "-q", "-D", "pulse", "sset", "Master", "4%-", NULL };
+static const char *volmute[] = { "amixer", "-q", "-D", "pulse", "sset", "Master", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
