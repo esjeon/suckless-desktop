@@ -56,9 +56,7 @@ dist-deb: all
 	@	sed "s/VERSION/${VERSION}/g" < st.1 > ${DEBDIR}/usr/share/man/man1/st.1
 	@	chmod 644 ${DEBDIR}/usr/share/man/man1/st.1
 	@	gzip      ${DEBDIR}/usr/share/man/man1/st.1
-	@touch .deb-rev
-	@fakeroot dpkg-deb --build ${DEBDIR} st-${VERSION}-$$(wc -l < .deb-rev).deb
-	@echo 1 >> .deb-rev
+	@fakeroot dpkg-deb --build ${DEBDIR} st-${VERSION}.deb
 	@rm -rf ${DEBDIR}
 
 install: all
