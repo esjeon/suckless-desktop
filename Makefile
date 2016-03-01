@@ -30,6 +30,7 @@ st: ${OBJ}
 clean:
 	@echo cleaning
 	@rm -f st ${OBJ} st-${VERSION}.tar.gz
+	@rm -rf ${DEBDIR}
 
 dist: clean
 	@echo creating dist tarball
@@ -38,6 +39,27 @@ dist: clean
 	@tar -cf st-${VERSION}.tar st-${VERSION}
 	@gzip st-${VERSION}.tar
 	@rm -rf st-${VERSION}
+
+dist-deb: all
+	@echo creating Debian package
+	@rm -rf ${DEBDIR}
+	@mkdir -p ${DEBDIR}/DEBIAN
+	@	cp -rf DEBIAN/* ${DEBDIR}/DEBIAN/
+	@	sed "s/VERSION/${VERSION}/g" < DEBIAN/control > ${DEBDIR}/DEBIAN/control
+	@mkdir -p ${DEBDIR}/usr/bin
+	@	cp st     ${DEBDIR}/usr/bin/st
+	@	chmod 755 ${DEBDIR}/usr/bin/st
+	@mkdir -p ${DEBDIR}/usr/share/st
+	@	cp st.info ${DEBDIR}/usr/share/st/st.info
+	@	chmod 644  ${DEBDIR}/usr/share/st/st.info
+	@mkdir -p ${DEBDIR}/usr/share/man/man1
+	@	cp st.1   ${DEBDIR}/usr/share/man/man1/st.1
+	@	chmod 644 ${DEBDIR}/usr/share/man/man1/st.1
+	@	gzip      ${DEBDIR}/usr/share/man/man1/st.1
+	@touch .deb-rev
+	@fakeroot dpkg-deb --build ${DEBDIR} st-${VERSION}-$$(wc -l < .deb-rev).deb
+	@echo 1 >> .deb-rev
+	@rm -rf ${DEBDIR}
 
 install: all
 	@echo installing executable file to ${DESTDIR}${PREFIX}/bin
@@ -57,4 +79,4 @@ uninstall:
 	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
 	@rm -f ${DESTDIR}${MANPREFIX}/man1/st.1
 
-.PHONY: all options clean dist install uninstall
+.PHONY: all options clean dist dist-deb install uninstall

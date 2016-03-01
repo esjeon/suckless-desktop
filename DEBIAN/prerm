@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#DEBHELPER#
+
+# unregister from alternatives
+case "$1" in
+	remove|deconfigure)
+		update-alternatives --remove x-terminal-emulator /usr/bin/st
+		;;
+	*)
+		;;
+esac

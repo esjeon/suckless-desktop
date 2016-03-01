@@ -1,11 +1,13 @@
 # st version
-VERSION = 0.6
+VERSION = 0.6+git
 
 # Customize below to fit your system
 
 # paths
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
+
+DEBDIR = .deb
 
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
