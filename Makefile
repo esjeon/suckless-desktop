@@ -53,7 +53,7 @@ dist-deb: all
 	@	cp st.info ${DEBDIR}/usr/share/st/st.info
 	@	chmod 644  ${DEBDIR}/usr/share/st/st.info
 	@mkdir -p ${DEBDIR}/usr/share/man/man1
-	@	cp st.1   ${DEBDIR}/usr/share/man/man1/st.1
+	@	sed "s/VERSION/${VERSION}/g" < st.1 > ${DEBDIR}/usr/share/man/man1/st.1
 	@	chmod 644 ${DEBDIR}/usr/share/man/man1/st.1
 	@	gzip      ${DEBDIR}/usr/share/man/man1/st.1
 	@touch .deb-rev
