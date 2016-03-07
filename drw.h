@@ -30,6 +30,9 @@ typedef struct {
 	Display *dpy;
 	int screen;
 	Window root;
+	Visual *visual;
+	unsigned int depth;
+	Colormap cmap;
 	Drawable drawable;
 	GC gc;
 	ClrScheme *scheme;
@@ -43,7 +46,7 @@ typedef struct {
 } Extnts;
 
 /* Drawable abstraction */
-Drw *drw_create(Display *, int, Window, unsigned int, unsigned int);
+Drw *drw_create(Display *, int, Window, unsigned int, unsigned int, Visual*, unsigned int, Colormap);
 void drw_resize(Drw *, unsigned int, unsigned int);
 void drw_free(Drw *);
 
