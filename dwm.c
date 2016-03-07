@@ -740,7 +740,6 @@ drawbar(Monitor *m)
 	w = blw = TEXTW(m->ltsymbol);
 	drw_setscheme(drw, &scheme[SchemeNorm]);
 	drw_text(drw, x, 0, w, bh, m->ltsymbol, 0);
-	XSync(drw->dpy, False);
 	x += w;
 	xx = x;
 	if (m == selmon) { /* status is only drawn on selected monitor */

@@ -188,8 +188,7 @@ drw_clr_create(Drw *drw, const char *clrname, unsigned int alpha)
 	Clr *clr;
 
 	clr = ecalloc(1, sizeof(Clr));
-	if (!XftColorAllocName(drw->dpy, drw->visual,
-	                       drw->cmap,
+	if (!XftColorAllocName(drw->dpy, drw->visual, drw->cmap,
 	                       clrname, &clr->rgb))
 		die("error, cannot allocate color '%s'\n", clrname);
 	clr->pix = (clr->rgb.pixel & 0x00ffffffU) | (alpha << 24);
@@ -248,9 +247,7 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, const char *tex
 		XSetForeground(drw->dpy, drw->gc, invert ?
 		               drw->scheme->fg->pix : drw->scheme->bg->pix);
 		XFillRectangle(drw->dpy, drw->drawable, drw->gc, x, y, w, h);
-		d = XftDrawCreate(drw->dpy, drw->drawable,
-		                  drw->visual,
-		                  drw->cmap);
+		d = XftDrawCreate(drw->dpy, drw->drawable, drw->visual, drw->cmap);
 	}
 
 	curfont = drw->fonts[0];
