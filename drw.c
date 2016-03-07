@@ -183,7 +183,7 @@ drw_font_free(Fnt *font)
 }
 
 Clr *
-drw_clr_create(Drw *drw, const char *clrname)
+drw_clr_create(Drw *drw, const char *clrname, unsigned int alpha)
 {
 	Clr *clr;
 
@@ -192,7 +192,7 @@ drw_clr_create(Drw *drw, const char *clrname)
 	                       drw->cmap,
 	                       clrname, &clr->rgb))
 		die("error, cannot allocate color '%s'\n", clrname);
-	clr->pix = clr->rgb.pixel;
+	clr->pix = (clr->rgb.pixel & 0x00ffffffU) | (alpha << 24);
 
 	return clr;
 }

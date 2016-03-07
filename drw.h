@@ -58,7 +58,7 @@ void drw_font_getexts(Fnt *, const char *, unsigned int, Extnts *);
 unsigned int drw_font_getexts_width(Fnt *, const char *, unsigned int);
 
 /* Colour abstraction */
-Clr *drw_clr_create(Drw *, const char *);
+Clr *drw_clr_create(Drw *, const char *, unsigned int);
 void drw_clr_free(Clr *);
 
 /* Cursor abstraction */

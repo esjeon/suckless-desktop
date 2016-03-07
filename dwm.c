@@ -57,6 +57,8 @@
 #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
 #define TEXTW(X)                (drw_text(drw, 0, 0, 0, 0, (X), 0) + drw->fonts[0]->h)
 
+#define OPAQUE                  0xffU
+
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
 enum { SchemeNorm, SchemeSel, SchemeLast }; /* color schemes */
@@ -1593,12 +1595,12 @@ setup(void)
 	cursor[CurResize] = drw_cur_create(drw, XC_sizing);
 	cursor[CurMove] = drw_cur_create(drw, XC_fleur);
 	/* init appearance */
-	scheme[SchemeNorm].border = drw_clr_create(drw, normbordercolor);
-	scheme[SchemeNorm].bg = drw_clr_create(drw, normbgcolor);
-	scheme[SchemeNorm].fg = drw_clr_create(drw, normfgcolor);
-	scheme[SchemeSel].border = drw_clr_create(drw, selbordercolor);
-	scheme[SchemeSel].bg = drw_clr_create(drw, selbgcolor);
-	scheme[SchemeSel].fg = drw_clr_create(drw, selfgcolor);
+	scheme[SchemeNorm].border = drw_clr_create(drw, normbordercolor, OPAQUE);
+	scheme[SchemeNorm].bg = drw_clr_create(drw, normbgcolor, alpha);
+	scheme[SchemeNorm].fg = drw_clr_create(drw, normfgcolor, OPAQUE);
+	scheme[SchemeSel].border = drw_clr_create(drw, selbordercolor, OPAQUE);
+	scheme[SchemeSel].bg = drw_clr_create(drw, selbgcolor, alpha);
+	scheme[SchemeSel].fg = drw_clr_create(drw, selfgcolor, OPAQUE);
 	/* init bars */
 	updatebars();
 	updatestatus();
