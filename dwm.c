@@ -1594,11 +1594,11 @@ setup(void)
 	cursor[CurResize] = drw_cur_create(drw, XC_sizing);
 	cursor[CurMove] = drw_cur_create(drw, XC_fleur);
 	/* init appearance */
-	scheme[SchemeNorm].border = drw_clr_create(drw, normbordercolor, OPAQUE);
-	scheme[SchemeNorm].bg = drw_clr_create(drw, normbgcolor, alpha);
+	scheme[SchemeNorm].border = drw_clr_create(drw, normbordercolor, borderalpha);
+	scheme[SchemeNorm].bg = drw_clr_create(drw, normbgcolor, baralpha);
 	scheme[SchemeNorm].fg = drw_clr_create(drw, normfgcolor, OPAQUE);
-	scheme[SchemeSel].border = drw_clr_create(drw, selbordercolor, OPAQUE);
-	scheme[SchemeSel].bg = drw_clr_create(drw, selbgcolor, alpha);
+	scheme[SchemeSel].border = drw_clr_create(drw, selbordercolor, borderalpha);
+	scheme[SchemeSel].bg = drw_clr_create(drw, selbgcolor, baralpha);
 	scheme[SchemeSel].fg = drw_clr_create(drw, selfgcolor, OPAQUE);
 	/* init bars */
 	updatebars();
