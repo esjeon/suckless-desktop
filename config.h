@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Terminus:pixelsize=15";
-static int borderpx = 2;
+static char font[] = "Hermit:pixelsize=14:autohint=true:hinting=hintfull:weight=regular:rgba=rgb";
+static int borderpx = 3;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -25,7 +25,7 @@ static char vtiden[] = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
-static float chscale = 1.0;
+static float chscale = 0.90;
 
 /*
  * word delimiter string
