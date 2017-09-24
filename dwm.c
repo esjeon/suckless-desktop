@@ -234,6 +234,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+static void reload(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -268,6 +269,7 @@ static Display *dpy;
 static Drw *drw;
 static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
+static char self_exe[256];
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -2125,6 +2127,13 @@ zoom(const Arg *arg)
 	pop(c);
 }
 
+void
+reload(const Arg *arg)
+{
+	char *argv[] = { self_exe, NULL };
+	execv(argv[0], argv);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -2136,6 +2145,9 @@ main(int argc, char *argv[])
 		fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("dwm: cannot open display");
+
+	readlink("/proc/self/exe", self_exe, sizeof(self_exe));
+
 	checkotherwm();
 	setup();
 	scan();
